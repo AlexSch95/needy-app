@@ -29,10 +29,10 @@ window.addEventListener('message', (event) => {
 
         // Token im localStorage speichern
         localStorage.setItem('fivem_token', receivedToken);
-        
+
         // Event dispatchen fuer React
-        window.dispatchEvent(new CustomEvent('fivem-token-received', { 
-            detail: { token: receivedToken } 
+        window.dispatchEvent(new CustomEvent('fivem-token-received', {
+            detail: { token: receivedToken }
         }));
     }
 });

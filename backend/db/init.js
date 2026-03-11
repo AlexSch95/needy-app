@@ -1,10 +1,10 @@
 const pool = require('./pool');
 
 async function initDB() {
-  const client = await pool.connect();
-  
-  try {
-    await client.query(`
+    const client = await pool.connect();
+
+    try {
+        await client.query(`
       CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
         username VARCHAR(50) UNIQUE NOT NULL,
@@ -48,11 +48,11 @@ async function initDB() {
       CREATE INDEX IF NOT EXISTS idx_matches_user1 ON matches(user1_id);
       CREATE INDEX IF NOT EXISTS idx_matches_user2 ON matches(user2_id);
     `);
-    
-    console.log('Database initialized successfully');
-  } finally {
-    client.release();
-  }
+
+        console.log('Database initialized successfully');
+    } finally {
+        client.release();
+    }
 }
 
 module.exports = { initDB };

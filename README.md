@@ -55,7 +55,7 @@ npm run dev
 
 1. Klicke auf "New" -> "GitHub Repo"
 2. Waehle das Repository
-3. Setze den Root Directory auf `backend`
+3. **WICHTIG:** Gehe zu Settings -> Root Directory und setze auf `backend`
 4. Setze folgende Umgebungsvariablen:
    - `JWT_SECRET`: Ein sicherer Secret Key
    - `UUID_TOKEN_SECRET`: Secret zum Entschluesseln der FiveM Tokens
@@ -66,7 +66,7 @@ npm run dev
 
 1. Klicke auf "New" -> "GitHub Repo"  
 2. Waehle das Repository
-3. Setze den Root Directory auf `frontend`
+3. **WICHTIG:** Gehe zu Settings -> Root Directory und setze auf `frontend`
 4. Setze folgende Umgebungsvariablen:
    - `VITE_API_URL`: URL deines Backends (z.B. https://cringe-backend.up.railway.app/api)
 
