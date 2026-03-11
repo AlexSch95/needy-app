@@ -105,7 +105,8 @@ function Matches() {
                                 onClick={() => setDeleteModalMatch(match)}
                             >
                                 <TrashIcon />
-                </div>
+                            </button>
+                        </div>
                     ))}
                 </div>
             )}
