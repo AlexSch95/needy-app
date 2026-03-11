@@ -135,7 +135,7 @@ router.delete('/users/:userId', authMiddleware, adminMiddleware, async (req, res
 
         // Prevent self-deletion
         if (parseInt(userId) === req.userId) {
-            return res.status(400).json({ error: 'Du kannst dich selbst nicht loeschen' });
+            return res.status(400).json({ error: 'Du kannst dich selbst nicht löschen' });
         }
 
         const result = await pool.query('DELETE FROM users WHERE id = $1 RETURNING id', [userId]);
@@ -144,10 +144,10 @@ router.delete('/users/:userId', authMiddleware, adminMiddleware, async (req, res
             return res.status(404).json({ error: 'User nicht gefunden' });
         }
 
-        res.json({ message: 'User erfolgreich geloescht' });
+        res.json({ message: 'User erfolgreich gelöscht' });
     } catch (error) {
         console.error('Admin delete error:', error);
-        res.status(500).json({ error: 'Fehler beim Loeschen' });
+        res.status(500).json({ error: 'Fehler beim Löschen' });
     }
 });
 

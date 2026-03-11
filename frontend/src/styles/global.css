@@ -358,6 +358,7 @@ textarea {
     justify-content: center;
     min-height: calc(100vh - 6rem);
     padding: 1rem 0;
+    overflow: hidden;
 }
 
 .swipe-card {
@@ -777,16 +778,16 @@ textarea.form-input {
 /* Swipe Animation */
 .swipe-card-wrapper {
     position: relative;
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
 .swipe-card-wrapper.swiping-left {
-    transform: translateX(-150%) rotate(-20deg);
+    transform: translateX(-120%) rotate(-15deg);
     opacity: 0;
 }
 
 .swipe-card-wrapper.swiping-right {
-    transform: translateX(150%) rotate(20deg);
+    transform: translateX(120%) rotate(15deg);
     opacity: 0;
 }
 

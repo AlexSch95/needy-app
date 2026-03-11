@@ -15,7 +15,7 @@
  * }
  */
 
-// Standalone-Version fuer Testzwecke
+// Standalone-Version für Testzwecke
 window.addEventListener('message', (event) => {
     if (event.data.type === 'uuid-token') {
         const receivedToken = event.data.token;
@@ -30,7 +30,7 @@ window.addEventListener('message', (event) => {
         // Token im localStorage speichern
         localStorage.setItem('fivem_token', receivedToken);
 
-        // Event dispatchen fuer React
+        // Event dispatchen für React
         window.dispatchEvent(new CustomEvent('fivem-token-received', {
             detail: { token: receivedToken }
         }));

@@ -99,7 +99,7 @@ function Profile() {
                             )}
                             <label className="upload-btn">
                                 <UploadIcon />
-                                Bild aendern
+                                Bild ändern
                                 <input type="file" accept="image/*" onChange={handleImageSelect} />
                             </label>
                         </div>
@@ -122,11 +122,11 @@ function Profile() {
 
                     {/* Gender (read-only) */}
                     <div className="form-group">
-                        <label>Geschlecht (nicht aenderbar)</label>
+                        <label>Geschlecht (nicht änderbar)</label>
                         <div className="gender-select">
                             <div className={`gender-option disabled ${user?.gender === 'male' ? 'selected' : ''}`}>
                                 <MaleIcon />
-                                <span>Maennlich</span>
+                                <span>Männlich</span>
                             </div>
                             <div className={`gender-option disabled ${user?.gender === 'female' ? 'selected' : ''}`}>
                                 <FemaleIcon />
@@ -144,19 +144,19 @@ function Profile() {
                             className="form-input"
                             value={phoneNumber}
                             onChange={(e) => setPhoneNumber(e.target.value)}
-                            placeholder="Nur fuer Matches sichtbar"
+                            placeholder="Nur für Matches sichtbar"
                         />
                     </div>
 
                     {/* Bio */}
                     <div className="form-group">
-                        <label htmlFor="bio">Ueber mich</label>
+                        <label htmlFor="bio">Über mich</label>
                         <textarea
                             id="bio"
                             className="form-input"
                             value={bio}
                             onChange={(e) => setBio(e.target.value)}
-                            placeholder="Erzaehl etwas ueber dich..."
+                            placeholder="Erzähl etwas über dich..."
                             maxLength={500}
                         />
                     </div>
@@ -174,7 +174,7 @@ function Profile() {
                     </div>
 
                     <button type="submit" className="btn btn-primary" disabled={loading}>
-                        {loading ? 'Wird gespeichert...' : 'Aenderungen speichern'}
+                        {loading ? 'Wird gespeichert...' : 'Änderungen speichern'}
                     </button>
                 </form>
 
@@ -185,7 +185,7 @@ function Profile() {
                         onClick={() => setShowDeleteModal(true)}
                     >
                         <TrashIcon />
-                        Account loeschen
+                        Account löschen
                     </button>
                 </div>
             </div>
@@ -201,8 +201,8 @@ function Profile() {
             {showDeleteModal && (
                 <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}>
                     <div className="match-modal" onClick={(e) => e.stopPropagation()}>
-                        <h2 style={{ color: 'var(--error)' }}>Account loeschen</h2>
-                        <p>Bist du sicher? Diese Aktion kann nicht rueckgaengig gemacht werden.</p>
+                        <h2 style={{ color: 'var(--error)' }}>Account löschen</h2>
+                        <p>Bist du sicher? Diese Aktion kann nicht rückgängig gemacht werden.</p>
                         <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
                             <button
                                 className="btn btn-secondary"
@@ -215,7 +215,7 @@ function Profile() {
                                 style={{ background: 'var(--error)' }}
                                 onClick={handleDeleteAccount}
                             >
-                                Loeschen
+                                Löschen
                             </button>
                         </div>
                     </div>

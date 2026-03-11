@@ -116,7 +116,7 @@ function Matches() {
                 <div className="modal-overlay" onClick={() => setDeleteModalMatch(null)}>
                     <div className="match-modal" onClick={(e) => e.stopPropagation()}>
                         <h2>Match entfernen</h2>
-                        <p>Moechtest du das Match mit {deleteModalMatch.user.displayName} wirklich entfernen?</p>
+                        <p>Möchtest du das Match mit {deleteModalMatch.user.displayName} wirklich entfernen?</p>
                         <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
                             <button
                                 className="btn btn-secondary"

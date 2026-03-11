@@ -166,7 +166,7 @@ function Admin() {
                                             <span className="label">Geschlecht</span>
                                             <span className="value">
                                                 {userDetails.user.gender === 'male'
-                                                    ? 'Maennlich'
+                                                    ? 'Männlich'
                                                     : userDetails.user.gender === 'female'
                                                         ? 'Weiblich'
                                                         : '-'}
@@ -221,14 +221,14 @@ function Admin() {
                                         onClick={() => setDeleteModalUser(userDetails.user)}
                                     >
                                         <TrashIcon />
-                                        User loeschen
+                                        User löschen
                                     </button>
                                 </div>
                             </>
                         ) : (
                             <div className="admin-empty-details">
                                 <UserIcon />
-                                <p>Waehle einen User aus der Liste</p>
+                                <p>Wähle einen User aus der Liste</p>
                             </div>
                         )}
                     </div>
@@ -238,10 +238,10 @@ function Admin() {
             {deleteModalUser && (
                 <div className="modal-overlay" onClick={() => setDeleteModalUser(null)}>
                     <div className="match-modal" onClick={(e) => e.stopPropagation()}>
-                        <h2 style={{ color: 'var(--error)' }}>User loeschen</h2>
+                        <h2 style={{ color: 'var(--error)' }}>User löschen</h2>
                         <p>
-                            Moechtest du den User "{deleteModalUser.displayName || deleteModalUser.username}" wirklich
-                            loeschen?
+                            Möchtest du den User "{deleteModalUser.displayName || deleteModalUser.username}" wirklich
+                            löschen?
                         </p>
                         <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
                             <button className="btn btn-secondary" onClick={() => setDeleteModalUser(null)}>
@@ -252,7 +252,7 @@ function Admin() {
                                 style={{ background: 'var(--error)' }}
                                 onClick={() => handleDeleteUser(deleteModalUser.id)}
                             >
-                                Loeschen
+                                Löschen
                             </button>
                         </div>
                     </div>

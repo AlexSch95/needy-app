@@ -100,7 +100,7 @@ function Discover() {
                 <div className="no-profiles">
                     <SearchIcon />
                     <h2>Keine weiteren Profile</h2>
-                    <p>Schau spaeter nochmal vorbei</p>
+                    <p>Schau später nochmal vorbei</p>
                 </div>
             </div>
         );

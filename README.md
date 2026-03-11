@@ -1,4 +1,4 @@
-# Cringe Dating App
+# Needy Dating App
 
 Moderne, minimalistische Dating-App mit FiveM-Integration.
 
@@ -59,7 +59,7 @@ npm run dev
 4. Setze folgende Umgebungsvariablen:
    - `JWT_SECRET`: Ein sicherer Secret Key
    - `UUID_TOKEN_SECRET`: Secret zum Entschluesseln der FiveM Tokens
-   - `FRONTEND_URL`: URL deines Frontends (z.B. https://cringe-frontend.up.railway.app)
+   - `FRONTEND_URL`: URL deines Frontends (z.B. https://needy-frontend.up.railway.app)
    - `DATABASE_URL`: Wird automatisch von Railway gesetzt (verlinke es mit der PostgreSQL DB)
 
 ### 4. Frontend Service
@@ -68,7 +68,7 @@ npm run dev
 2. Waehle das Repository
 3. **WICHTIG:** Gehe zu Settings -> Root Directory und setze auf `frontend`
 4. Setze folgende Umgebungsvariablen:
-   - `VITE_API_URL`: URL deines Backends (z.B. https://cringe-backend.up.railway.app/api)
+   - `VITE_API_URL`: URL deines Backends (z.B. https://needy-backend.up.railway.app/api)
 
 ## FiveM Integration
 
@@ -110,13 +110,13 @@ Die UUID wird bei der Registrierung mit dem User gespeichert.
 - `GET /api/auth/me` - Aktueller User
 
 ### Profil
-- `PUT /api/profile/complete` - Profil vervollstaendigen
+- `PUT /api/profile/complete` - Profil vervollständigen
 - `PUT /api/profile/update` - Profil aktualisieren
-- `DELETE /api/profile` - Account loeschen
+- `DELETE /api/profile` - Account löschen
 
 ### Swipe
-- `GET /api/swipe/next` - Naechstes Profil
-- `POST /api/swipe` - Swipe ausfuehren
+- `GET /api/swipe/next` - Nächstes Profil
+- `POST /api/swipe` - Swipe ausführen
 
 ### Matches
 - `GET /api/matches` - Alle Matches

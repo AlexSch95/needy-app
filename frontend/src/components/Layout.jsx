@@ -8,7 +8,7 @@ function Layout() {
     return (
         <div className="app-layout">
             <aside className="sidebar">
-                <div className="sidebar-logo">Cringe</div>
+                <div className="sidebar-logo">Needy</div>
 
                 <nav className="sidebar-nav">
                     <NavLink

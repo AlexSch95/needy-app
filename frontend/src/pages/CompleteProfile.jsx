@@ -46,7 +46,7 @@ function CompleteProfile() {
         setError('');
 
         if (!displayName || !gender || !profileImage) {
-            setError('Bitte fuell alle Pflichtfelder aus');
+            setError('Bitte füll alle Pflichtfelder aus');
             return;
         }
 
@@ -76,8 +76,8 @@ function CompleteProfile() {
             <div className="complete-profile-container">
                 <div className="complete-profile-card">
                     <div className="auth-header">
-                        <h1>Profil vervollstaendigen</h1>
-                        <p>Erzaehl uns etwas ueber dich</p>
+                        <h1>Profil vervollständigen</h1>
+                        <p>Erzähl uns etwas über dich</p>
                     </div>
 
                     {error && <div className="error-message">{error}</div>}
@@ -94,7 +94,7 @@ function CompleteProfile() {
                                 )}
                                 <label className="upload-btn">
                                     <UploadIcon />
-                                    Bild auswaehlen
+                                    Bild auswählen
                                     <input type="file" accept="image/*" onChange={handleImageSelect} />
                                 </label>
                             </div>
@@ -117,7 +117,7 @@ function CompleteProfile() {
 
                         {/* Gender */}
                         <div className="form-group">
-                            <label>Geschlecht * (nicht aenderbar)</label>
+                            <label>Geschlecht * (nicht änderbar)</label>
                             <div className="gender-select">
                                 <button
                                     type="button"
@@ -125,7 +125,7 @@ function CompleteProfile() {
                                     onClick={() => setGender('male')}
                                 >
                                     <MaleIcon />
-                                    <span>Maennlich</span>
+                                    <span>Männlich</span>
                                 </button>
                                 <button
                                     type="button"
@@ -147,19 +147,19 @@ function CompleteProfile() {
                                 className="form-input"
                                 value={phoneNumber}
                                 onChange={(e) => setPhoneNumber(e.target.value)}
-                                placeholder="Nur fuer Matches sichtbar"
+                                placeholder="Nur für Matches sichtbar"
                             />
                         </div>
 
                         {/* Bio */}
                         <div className="form-group">
-                            <label htmlFor="bio">Ueber mich (optional)</label>
+                            <label htmlFor="bio">Über mich (optional)</label>
                             <textarea
                                 id="bio"
                                 className="form-input"
                                 value={bio}
                                 onChange={(e) => setBio(e.target.value)}
-                                placeholder="Erzaehl etwas ueber dich..."
+                                placeholder="Erzähl etwas über dich..."
                                 maxLength={500}
                             />
                         </div>

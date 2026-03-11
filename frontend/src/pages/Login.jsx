@@ -27,7 +27,7 @@ function Login() {
         <div className="auth-container">
             <div className="auth-card">
                 <div className="auth-header">
-                    <h1>Willkommen zurueck</h1>
+                    <h1>Willkommen zurück</h1>
                     <p>Melde dich an um fortzufahren</p>
                 </div>
 

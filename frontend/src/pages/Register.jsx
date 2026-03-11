@@ -17,7 +17,7 @@ function Register() {
         setError('');
 
         if (password !== confirmPassword) {
-            setError('Passwoerter stimmen nicht ueberein');
+            setError('Passwörter stimmen nicht überein');
             return;
         }
 
@@ -47,7 +47,7 @@ function Register() {
 
                 {fivemToken && (
                     <div className="success-message">
-                        Account-Verknuepfung erkannt
+                        Account-Verknüpfung erkannt
                     </div>
                 )}
 
@@ -62,7 +62,7 @@ function Register() {
                             className="form-input"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Waehle einen Username"
+                            placeholder="Wähle einen Username"
                             minLength={3}
                             maxLength={50}
                             required
@@ -84,7 +84,7 @@ function Register() {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="confirmPassword">Passwort bestaetigen</label>
+                        <label htmlFor="confirmPassword">Passwort bestätigen</label>
                         <input
                             type="password"
                             id="confirmPassword"
