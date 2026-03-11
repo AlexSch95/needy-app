@@ -84,12 +84,15 @@ function Matches() {
                                 <h3 className="match-card-name">{match.user.displayName}</h3>
                                 <p className="match-card-date">Match am {formatDate(match.matchedAt)}</p>
 
-                                {match.user.phoneNumber && (
-                                    <div className="match-card-phone">
-                                        <PhoneIcon />
-                                        {match.user.phoneNumber}
-                                    </div>
-                                )}
+                                <div className="match-card-phone">
+                                    <PhoneIcon />
+                                    <input
+                                        type="text"
+                                        readOnly
+                                        value={match.user.phoneNumber || 'nicht vorhanden'}
+                                        onClick={(e) => e.target.select()}
+                                    />
+                                </div>
 
                                 {match.user.bio && (
                                     <p className="swipe-card-bio" style={{ marginTop: '0.75rem' }}>
