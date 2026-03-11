@@ -6,6 +6,7 @@ const AuthContext = createContext(null);
 export function AuthProvider({ children }) {
     const [user, setUser] = useState(null);
     const [isProfileComplete, setIsProfileComplete] = useState(false);
+    const [isAdmin, setIsAdmin] = useState(false);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -24,6 +25,7 @@ export function AuthProvider({ children }) {
                         fivemUuid: data.fivemUuid,
                     });
                     setIsProfileComplete(data.isProfileComplete);
+                    setIsAdmin(data.isAdmin || false);
                 })
                 .catch(() => {
                     localStorage.removeItem('auth_token');
@@ -56,6 +58,7 @@ export function AuthProvider({ children }) {
         localStorage.removeItem('auth_token');
         setUser(null);
         setIsProfileComplete(false);
+        setIsAdmin(false);
     }, []);
 
     const updateUser = useCallback((updates) => {
@@ -74,6 +77,7 @@ export function AuthProvider({ children }) {
             value={{
                 user,
                 isProfileComplete,
+                isAdmin,
                 loading,
                 login,
                 register,

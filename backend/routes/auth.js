@@ -127,7 +127,8 @@ router.get('/me', authMiddleware, async (req, res) => {
     try {
         const result = await pool.query(
             `SELECT u.id, u.username, u.fivem_uuid, 
-              p.display_name, p.gender, p.phone_number, p.profile_image, p.bio, p.is_complete
+              p.display_name, p.gender, p.phone_number, p.profile_image, p.bio, p.is_complete,
+              (SELECT COUNT(*) FROM admins WHERE user_id = u.id) > 0 as is_admin
        FROM users u 
        LEFT JOIN profiles p ON u.id = p.user_id 
        WHERE u.id = $1`,
@@ -148,7 +149,8 @@ router.get('/me', authMiddleware, async (req, res) => {
             phoneNumber: user.phone_number,
             profileImage: user.profile_image,
             bio: user.bio,
-            isProfileComplete: user.is_complete || false
+            isProfileComplete: user.is_complete || false,
+            isAdmin: user.is_admin || false
         });
     } catch (error) {
         console.error('Get user error:', error);

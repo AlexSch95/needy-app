@@ -43,6 +43,12 @@ async function initDB() {
         UNIQUE(user1_id, user2_id)
       );
 
+      CREATE TABLE IF NOT EXISTS admins (
+        id SERIAL PRIMARY KEY,
+        user_id INTEGER UNIQUE REFERENCES users(id) ON DELETE CASCADE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+      );
+
       CREATE INDEX IF NOT EXISTS idx_swipes_swiper ON swipes(swiper_id);
       CREATE INDEX IF NOT EXISTS idx_swipes_swiped ON swipes(swiped_id);
       CREATE INDEX IF NOT EXISTS idx_matches_user1 ON matches(user1_id);

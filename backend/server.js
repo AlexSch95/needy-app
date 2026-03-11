@@ -5,6 +5,7 @@ const authRoutes = require('./routes/auth');
 const profileRoutes = require('./routes/profile');
 const swipeRoutes = require('./routes/swipe');
 const matchRoutes = require('./routes/match');
+const adminRoutes = require('./routes/admin');
 const { initDB } = require('./db/init');
 
 const app = express();
@@ -37,6 +38,7 @@ app.use('/api/auth', authRoutes);
 app.use('/api/profile', profileRoutes);
 app.use('/api/swipe', swipeRoutes);
 app.use('/api/matches', matchRoutes);
+app.use('/api/admin', adminRoutes);
 
 // Health check
 app.get('/api/health', (req, res) => {

@@ -68,6 +68,16 @@ export const api = {
 
     deleteMatch: (matchId) =>
         request(`/matches/${matchId}`, { method: 'DELETE' }),
+
+    // Admin
+    adminSearchUsers: (search) =>
+        request(`/admin/users?search=${encodeURIComponent(search || '')}`),
+
+    adminGetUser: (userId) =>
+        request(`/admin/users/${userId}`),
+
+    adminDeleteUser: (userId) =>
+        request(`/admin/users/${userId}`, { method: 'DELETE' }),
 };
 
 export default api;

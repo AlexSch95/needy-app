@@ -7,6 +7,7 @@ import CompleteProfile from './pages/CompleteProfile'
 import Discover from './pages/Discover'
 import Matches from './pages/Matches'
 import Profile from './pages/Profile'
+import Admin from './pages/Admin'
 import Layout from './components/Layout'
 
 function ProtectedRoute({ children, requireComplete = true }) {
@@ -74,6 +75,7 @@ function App() {
                             <Route path="discover" element={<Discover />} />
                             <Route path="matches" element={<Matches />} />
                             <Route path="profile" element={<Profile />} />
+                            <Route path="admin" element={<Admin />} />
                         </Route>
                         <Route path="*" element={<Navigate to="/" />} />
                     </Routes>

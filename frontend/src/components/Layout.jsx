@@ -1,9 +1,9 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
-import { CompassIcon, UsersIcon, UserIcon, LogOutIcon } from './Icons';
+import { CompassIcon, UsersIcon, UserIcon, LogOutIcon, ShieldIcon } from './Icons';
 
 function Layout() {
-    const { user, logout } = useAuth();
+    const { user, isAdmin, logout } = useAuth();
 
     return (
         <div className="app-layout">
@@ -32,6 +32,15 @@ function Layout() {
                         <UserIcon />
                         Profil
                     </NavLink>
+                    {isAdmin && (
+                        <NavLink
+                            to="/admin"
+                            className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}
+                        >
+                            <ShieldIcon />
+                            Admin
+                        </NavLink>
+                    )}
                 </nav>
 
                 <div className="sidebar-footer">
