@@ -541,6 +541,7 @@ textarea {
     display: flex;
     gap: 1.5rem;
     transition: all var(--transition);
+    position: relative;
 }
 
 .match-card:hover {
@@ -602,14 +603,30 @@ textarea {
     height: 14px;
 }
 
-.match-card-actions {
-    margin-top: 0.75rem;
+.match-card-delete {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-sm);
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    color: var(--error);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
 }
 
-.match-card-actions button {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 0.75rem;
+.match-card-delete:hover {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: var(--error);
+}
+
+.match-card-delete svg {
+    width: 16px;
+    height: 16px;
 }
 
 /* Profile Page */

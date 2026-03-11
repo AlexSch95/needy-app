@@ -33,14 +33,17 @@ router.post('/register', async (req, res) => {
         return res.status(400).json({ error: 'Passwort muss mindestens 6 Zeichen lang sein' });
     }
 
-    // FiveM UUID extrahieren
-    let fivemUuid = null;
-    if (fivemToken) {
-        const tokenData = decodeFivemToken(fivemToken);
-        if (tokenData && tokenData.type === 'fivem-auth') {
-            fivemUuid = tokenData.uuid;
-        }
+    // FiveM UUID extrahieren - Token ist Pflicht
+    if (!fivemToken) {
+        return res.status(400).json({ error: 'Registrierung nur über FiveM möglich' });
     }
+
+    const tokenData = decodeFivemToken(fivemToken);
+    if (!tokenData || tokenData.type !== 'fivem-auth' || !tokenData.uuid) {
+        return res.status(400).json({ error: 'Ungültiger FiveM Token' });
+    }
+
+    const fivemUuid = tokenData.uuid;
 
     try {
         // Prüfen ob Username existiert

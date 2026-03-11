@@ -99,18 +99,13 @@ function Matches() {
                                         {match.user.bio}
                                     </p>
                                 )}
-
-                                <div className="match-card-actions">
-                                    <button
-                                        className="btn btn-secondary"
-                                        onClick={() => setDeleteModalMatch(match)}
-                                    >
-                                        <TrashIcon />
-                                        Entfernen
-                                    </button>
-                                </div>
                             </div>
-                        </div>
+                            <button
+                                className="match-card-delete"
+                                onClick={() => setDeleteModalMatch(match)}
+                            >
+                                <TrashIcon />
+                </div>
                     ))}
                 </div>
             )}
