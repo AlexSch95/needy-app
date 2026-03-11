@@ -4,27 +4,12 @@ const FivemTokenContext = createContext(null);
 
 export function FivemTokenProvider({ children }) {
     const [fivemToken, setFivemToken] = useState(null);
-    const [debugMessage, setDebugMessage] = useState(null);
-
-    const showDebugMessage = useCallback((message) => {
-        setDebugMessage(message);
-        setTimeout(() => setDebugMessage(null), 5000);
-    }, []);
-
-    // Globale Funktion für Debug Messages
-    useEffect(() => {
-        window.showDebugMessage = showDebugMessage;
-        return () => {
-            delete window.showDebugMessage;
-        };
-    }, [showDebugMessage]);
 
     useEffect(() => {
         // Token von FiveM empfangen (aus listener.js integriert)
         const handleMessage = (event) => {
             if (event.data.type === 'uuid-token') {
                 const receivedToken = event.data.token;
-                showDebugMessage(`Token empfangen: ${receivedToken.substring(0, 20)}...`);
                 console.log('[FiveM] Token empfangen:', receivedToken);
                 setFivemToken(receivedToken);
                 localStorage.setItem('fivem_token', receivedToken);
@@ -42,7 +27,7 @@ export function FivemTokenProvider({ children }) {
         return () => {
             window.removeEventListener('message', handleMessage);
         };
-    }, [showDebugMessage]);
+    }, []);
 
     const clearToken = useCallback(() => {
         setFivemToken(null);
@@ -52,7 +37,6 @@ export function FivemTokenProvider({ children }) {
     return (
         <FivemTokenContext.Provider value={{ fivemToken, clearToken }}>
             {children}
-            {debugMessage && <div className="debug-message">{debugMessage}</div>}
         </FivemTokenContext.Provider>
     );
 }

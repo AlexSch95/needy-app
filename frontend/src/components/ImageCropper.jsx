@@ -66,7 +66,7 @@ function ImageCropper({ image, onCropComplete, onCancel }) {
                     crop={crop}
                     zoom={zoom}
                     aspect={1}
-                    cropShape="round"
+                    cropShape="rect"
                     showGrid={false}
                     onCropChange={onCropChange}
                     onZoomChange={onZoomChange}
