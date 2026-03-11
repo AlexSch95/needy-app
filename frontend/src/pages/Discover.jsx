@@ -45,16 +45,22 @@ function Discover() {
 
             if (result.isMatch) {
                 setShowMatch(true);
+                // Bei Match: Warte bis User Modal schließt
+            } else {
+                // Kein Match: Nach Animation nächstes Profil laden
+                setTimeout(() => {
+                    loadNextProfile();
+                }, 300);
             }
-
-            // Wait for animation
-            setTimeout(() => {
-                loadNextProfile();
-            }, 300);
         } catch (err) {
             setError(err.message);
             setSwipeDirection(null);
         }
+    };
+
+    const handleCloseMatch = () => {
+        setShowMatch(false);
+        loadNextProfile();
     };
 
     // Keyboard controls
@@ -154,11 +160,11 @@ function Discover() {
             </div>
 
             {showMatch && (
-                <div className="modal-overlay" onClick={() => setShowMatch(false)}>
+                <div className="modal-overlay" onClick={handleCloseMatch}>
                     <div className="match-modal" onClick={(e) => e.stopPropagation()}>
                         <h2>It's a Match!</h2>
-                        <p>Ihr moegt euch gegenseitig. Schau in deine Matches um die Telefonnummer zu sehen.</p>
-                        <button className="btn btn-primary" onClick={() => setShowMatch(false)}>
+                        <p>Ihr mögt euch gegenseitig. Schau in deine Matches um die Telefonnummer zu sehen.</p>
+                        <button className="btn btn-primary" onClick={handleCloseMatch}>
                             Weiter swipen
                         </button>
                     </div>
