@@ -41,8 +41,22 @@ export function AuthProvider({ children }) {
     const login = useCallback(async (username, password) => {
         const data = await api.login(username, password);
         localStorage.setItem('auth_token', data.token);
-        setUser(data.user);
-        setIsProfileComplete(data.isProfileComplete);
+
+        // Vollständige Profildaten laden
+        const meData = await api.getMe();
+        setUser({
+            id: meData.id,
+            username: meData.username,
+            displayName: meData.displayName,
+            profileImage: meData.profileImage,
+            gender: meData.gender,
+            phoneNumber: meData.phoneNumber,
+            bio: meData.bio,
+            fivemUuid: meData.fivemUuid,
+        });
+        setIsProfileComplete(meData.isProfileComplete);
+        setIsAdmin(meData.isAdmin || false);
+
         return data;
     }, []);
 

@@ -1,6 +1,7 @@
 const express = require('express');
 const pool = require('../db/pool');
 const authMiddleware = require('../middleware/auth');
+const { validateProfileData } = require('../utils/sanitize');
 
 const router = express.Router();
 
@@ -16,9 +17,13 @@ router.put('/complete', authMiddleware, async (req, res) => {
         return res.status(400).json({ error: 'Geschlecht muss male oder female sein' });
     }
 
-    if (displayName.length < 2 || displayName.length > 100) {
-        return res.status(400).json({ error: 'Anzeigename muss zwischen 2 und 100 Zeichen lang sein' });
+    // Validierung und Sanitization
+    const validation = validateProfileData({ displayName, phoneNumber, bio, profileImage });
+    if (!validation.valid) {
+        return res.status(400).json({ error: validation.error });
     }
+
+    const sanitized = validation.data;
 
     try {
         // Prüfen ob Geschlecht bereits gesetzt ist
@@ -35,7 +40,7 @@ router.put('/complete', authMiddleware, async (req, res) => {
        SET display_name = $1, gender = $2, phone_number = $3, profile_image = $4, bio = $5, 
            is_complete = TRUE, updated_at = CURRENT_TIMESTAMP
        WHERE user_id = $6`,
-            [displayName, finalGender, phoneNumber || null, profileImage, bio || null, req.userId]
+            [sanitized.displayName, finalGender, sanitized.phoneNumber || null, sanitized.profileImage, sanitized.bio || null, req.userId]
         );
 
         res.json({ message: 'Profil aktualisiert' });
@@ -53,13 +58,21 @@ router.put('/update', authMiddleware, async (req, res) => {
         return res.status(400).json({ error: 'Anzeigename ist erforderlich' });
     }
 
+    // Validierung und Sanitization
+    const validation = validateProfileData({ displayName, phoneNumber, bio, profileImage });
+    if (!validation.valid) {
+        return res.status(400).json({ error: validation.error });
+    }
+
+    const sanitized = validation.data;
+
     try {
         await pool.query(
             `UPDATE profiles 
        SET display_name = $1, phone_number = $2, profile_image = COALESCE($3, profile_image), 
            bio = $4, updated_at = CURRENT_TIMESTAMP
        WHERE user_id = $5`,
-            [displayName, phoneNumber || null, profileImage, bio || null, req.userId]
+            [sanitized.displayName, sanitized.phoneNumber || null, sanitized.profileImage, sanitized.bio || null, req.userId]
         );
 
         res.json({ message: 'Profil aktualisiert' });

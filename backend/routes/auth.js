@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const pool = require('../db/pool');
 const authMiddleware = require('../middleware/auth');
+const { validateUsername } = require('../utils/sanitize');
 
 const router = express.Router();
 
@@ -25,9 +26,12 @@ router.post('/register', async (req, res) => {
         return res.status(400).json({ error: 'Username und Passwort erforderlich' });
     }
 
-    if (username.length < 3 || username.length > 50) {
-        return res.status(400).json({ error: 'Username muss zwischen 3 und 50 Zeichen lang sein' });
+    // Username validieren und sanitieren
+    const usernameValidation = validateUsername(username);
+    if (!usernameValidation.valid) {
+        return res.status(400).json({ error: usernameValidation.error });
     }
+    const sanitizedUsername = usernameValidation.sanitized;
 
     if (password.length < 6) {
         return res.status(400).json({ error: 'Passwort muss mindestens 6 Zeichen lang sein' });
@@ -35,7 +39,7 @@ router.post('/register', async (req, res) => {
 
     // FiveM UUID extrahieren - Token ist Pflicht
     if (!fivemToken) {
-        return res.status(400).json({ error: 'Registrierung nur über FiveM möglich' });
+        return res.status(400).json({ error: 'Registrierung nur mit gültiger Ausweis-ID möglich' });
     }
 
     const tokenData = decodeFivemToken(fivemToken);
@@ -49,7 +53,7 @@ router.post('/register', async (req, res) => {
         // Prüfen ob Username existiert
         const existingUser = await pool.query(
             'SELECT id FROM users WHERE username = $1',
-            [username]
+            [sanitizedUsername]
         );
 
         if (existingUser.rows.length > 0) {
@@ -62,7 +66,7 @@ router.post('/register', async (req, res) => {
         // User erstellen
         const result = await pool.query(
             'INSERT INTO users (username, password_hash, fivem_uuid) VALUES ($1, $2, $3) RETURNING id',
-            [username, passwordHash, fivemUuid]
+            [sanitizedUsername, passwordHash, fivemUuid]
         );
 
         const userId = result.rows[0].id;
@@ -78,7 +82,7 @@ router.post('/register', async (req, res) => {
 
         res.status(201).json({
             token,
-            user: { id: userId, username },
+            user: { id: userId, username: sanitizedUsername },
             isProfileComplete: false
         });
     } catch (error) {
