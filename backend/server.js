@@ -16,10 +16,10 @@ const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:5173')
     .map(url => url.trim());
 
 app.use(cors({
-    origin: function(origin, callback) {
+    origin: function (origin, callback) {
         // Erlaube Requests ohne Origin (z.B. mobile Apps, Postman)
         if (!origin) return callback(null, true);
-        
+
         if (allowedOrigins.includes(origin)) {
             callback(null, true);
         } else {

@@ -15,6 +15,7 @@ function Profile() {
     const [success, setSuccess] = useState('');
     const [loading, setLoading] = useState(false);
     const [imageToCrop, setImageToCrop] = useState(null);
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     const handleImageSelect = useCallback((e) => {
         const file = e.target.files?.[0];
@@ -67,15 +68,12 @@ function Profile() {
     };
 
     const handleDeleteAccount = async () => {
-        if (!confirm('Account wirklich loeschen? Diese Aktion kann nicht rueckgaengig gemacht werden.')) {
-            return;
-        }
-
         try {
             await api.deleteAccount();
             logout();
         } catch (err) {
             setError(err.message);
+            setShowDeleteModal(false);
         }
     };
 
@@ -175,20 +173,6 @@ function Profile() {
                         />
                     </div>
 
-                    {/* FiveM UUID (read-only) */}
-                    {user?.fivemUuid && (
-                        <div className="form-group">
-                            <label>FiveM UUID</label>
-                            <input
-                                type="text"
-                                className="form-input"
-                                value={user.fivemUuid}
-                                disabled
-                                style={{ opacity: 0.6 }}
-                            />
-                        </div>
-                    )}
-
                     <button type="submit" className="btn btn-primary" disabled={loading}>
                         {loading ? 'Wird gespeichert...' : 'Aenderungen speichern'}
                     </button>
@@ -198,7 +182,7 @@ function Profile() {
                     <button
                         className="btn btn-secondary"
                         style={{ borderColor: 'var(--error)', color: 'var(--error)' }}
-                        onClick={handleDeleteAccount}
+                        onClick={() => setShowDeleteModal(true)}
                     >
                         <TrashIcon />
                         Account loeschen
@@ -212,6 +196,30 @@ function Profile() {
                     onCropComplete={handleCropComplete}
                     onCancel={() => setImageToCrop(null)}
                 />
+            )}
+
+            {showDeleteModal && (
+                <div className="modal-overlay" onClick={() => setShowDeleteModal(false)}>
+                    <div className="match-modal" onClick={(e) => e.stopPropagation()}>
+                        <h2 style={{ color: 'var(--error)' }}>Account loeschen</h2>
+                        <p>Bist du sicher? Diese Aktion kann nicht rueckgaengig gemacht werden.</p>
+                        <div style={{ display: 'flex', gap: '0.75rem', justifyContent: 'center' }}>
+                            <button
+                                className="btn btn-secondary"
+                                onClick={() => setShowDeleteModal(false)}
+                            >
+                                Abbrechen
+                            </button>
+                            <button
+                                className="btn btn-primary"
+                                style={{ background: 'var(--error)' }}
+                                onClick={handleDeleteAccount}
+                            >
+                                Loeschen
+                            </button>
+                        </div>
+                    </div>
+                </div>
             )}
         </>
     );

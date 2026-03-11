@@ -47,7 +47,7 @@ function Register() {
 
                 {fivemToken && (
                     <div className="success-message">
-                        FiveM Verknuepfung erkannt
+                        Account-Verknuepfung erkannt
                     </div>
                 )}
 
