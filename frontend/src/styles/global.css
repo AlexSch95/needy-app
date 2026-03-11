@@ -230,11 +230,13 @@ textarea {
 }
 
 .sidebar-logo {
-    font-size: 1.375rem;
-    font-weight: 700;
-    color: var(--accent);
     padding: 0.5rem 0.75rem;
     margin-bottom: 1.5rem;
+}
+
+.sidebar-logo img {
+    height: 32px;
+    width: auto;
 }
 
 .sidebar-nav {

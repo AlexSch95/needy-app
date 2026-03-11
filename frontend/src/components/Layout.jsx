@@ -1,6 +1,7 @@
 import { NavLink, Outlet } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { CompassIcon, UsersIcon, UserIcon, LogOutIcon, ShieldIcon } from './Icons';
+import brandingLogo from '../../assets/branding.png';
 
 function Layout() {
     const { user, isAdmin, logout } = useAuth();
@@ -8,7 +9,9 @@ function Layout() {
     return (
         <div className="app-layout">
             <aside className="sidebar">
-                <div className="sidebar-logo">Needy</div>
+                <div className="sidebar-logo">
+                    <img src={brandingLogo} alt="Logo" />
+                </div>
 
                 <nav className="sidebar-nav">
                     <NavLink
