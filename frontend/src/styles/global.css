@@ -235,8 +235,8 @@ textarea {
 }
 
 .sidebar-logo img {
-    height: 80px;
-    width: auto;
+    width: 100%;
+    height: auto;
 }
 
 .sidebar-nav {
