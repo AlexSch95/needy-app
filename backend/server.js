@@ -10,8 +10,23 @@ const { initDB } = require('./db/init');
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// CORS - erlaubt mehrere Origins (kommagetrennt in FRONTEND_URL)
+const allowedOrigins = (process.env.FRONTEND_URL || 'http://localhost:5173')
+    .split(',')
+    .map(url => url.trim());
+
 app.use(cors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: function(origin, callback) {
+        // Erlaube Requests ohne Origin (z.B. mobile Apps, Postman)
+        if (!origin) return callback(null, true);
+        
+        if (allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            console.log('CORS blocked origin:', origin);
+            callback(new Error('CORS not allowed'));
+        }
+    },
     credentials: true
 }));
 
