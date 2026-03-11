@@ -529,17 +529,17 @@ textarea {
 /* Matches List */
 .matches-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 1.5rem;
 }
 
 .match-card {
     background: var(--bg-secondary);
     border: 1px solid var(--border);
     border-radius: var(--radius-md);
-    padding: 1rem;
+    padding: 1.5rem;
     display: flex;
-    gap: 1rem;
+    gap: 1.5rem;
     transition: all var(--transition);
 }
 
@@ -548,8 +548,8 @@ textarea {
 }
 
 .match-card-image {
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
     border-radius: var(--radius-md);
     object-fit: cover;
     background: var(--bg-tertiary);
