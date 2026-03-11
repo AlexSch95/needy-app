@@ -1,0 +1,13 @@
+[build]
+  command = "npm install && npm run build"
+  
+[build.environment]
+  NODE_VERSION = "20"
+
+[[services]]
+  name = "backend"
+  root = "backend"
+  
+[[services]]
+  name = "frontend"  
+  root = "frontend"
