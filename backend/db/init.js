@@ -9,7 +9,7 @@ async function initDB() {
         id SERIAL PRIMARY KEY,
         username VARCHAR(50) UNIQUE NOT NULL,
         password_hash VARCHAR(255) NOT NULL,
-        fivem_uuid VARCHAR(100),
+        fivem_uuid VARCHAR(100) UNIQUE,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
       );
       

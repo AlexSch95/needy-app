@@ -50,6 +50,16 @@ router.post('/register', async (req, res) => {
     const fivemUuid = tokenData.uuid;
 
     try {
+        // Prüfen ob UUID bereits registriert ist
+        const existingUuid = await pool.query(
+            'SELECT id FROM users WHERE fivem_uuid = $1',
+            [fivemUuid]
+        );
+
+        if (existingUuid.rows.length > 0) {
+            return res.status(400).json({ error: 'Mit dieser Ausweis-ID existiert bereits ein Account' });
+        }
+
         // Prüfen ob Username existiert
         const existingUser = await pool.query(
             'SELECT id FROM users WHERE username = $1',
