@@ -209,6 +209,34 @@ textarea {
     font-size: 0.8125rem;
 }
 
+.info-message {
+    background: rgba(59, 130, 246, 0.08);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    color: #3b82f6;
+    padding: 0.625rem 0.75rem;
+    border-radius: var(--radius-sm);
+    margin-bottom: 1rem;
+    font-size: 0.8125rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.loading-spinner {
+    width: 14px;
+    height: 14px;
+    border: 2px solid rgba(59, 130, 246, 0.3);
+    border-top-color: #3b82f6;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
 /* Layout */
 .app-layout {
     display: flex;

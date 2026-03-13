@@ -45,6 +45,13 @@ function Register() {
                     <p>Registriere dich um loszulegen</p>
                 </div>
 
+                {!fivemToken && (
+                    <div className="info-message">
+                        <span className="loading-spinner"></span>
+                        Warte auf Authentifizierung...
+                    </div>
+                )}
+
                 {fivemToken && (
                     <div className="success-message">
                         Account-Verknüpfung erkannt
@@ -62,10 +69,11 @@ function Register() {
                             className="form-input"
                             value={username}
                             onChange={(e) => setUsername(e.target.value)}
-                            placeholder="Wähle einen Username"
+                            placeholder={fivemToken ? "Wähle einen Username" : "Warte auf Authentifizierung..."}
                             minLength={3}
                             maxLength={50}
                             required
+                            disabled={!fivemToken}
                         />
                     </div>
 
@@ -77,9 +85,10 @@ function Register() {
                             className="form-input"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Mindestens 6 Zeichen"
+                            placeholder={fivemToken ? "Mindestens 6 Zeichen" : "Warte auf Authentifizierung..."}
                             minLength={6}
                             required
+                            disabled={!fivemToken}
                         />
                     </div>
 
@@ -91,13 +100,14 @@ function Register() {
                             className="form-input"
                             value={confirmPassword}
                             onChange={(e) => setConfirmPassword(e.target.value)}
-                            placeholder="Passwort wiederholen"
+                            placeholder={fivemToken ? "Passwort wiederholen" : "Warte auf Authentifizierung..."}
                             required
+                            disabled={!fivemToken}
                         />
                     </div>
 
-                    <button type="submit" className="btn btn-primary" disabled={loading}>
-                        {loading ? 'Wird erstellt...' : 'Registrieren'}
+                    <button type="submit" className="btn btn-primary" disabled={loading || !fivemToken}>
+                        {loading ? 'Wird erstellt...' : !fivemToken ? 'Warte auf Authentifizierung...' : 'Registrieren'}
                     </button>
                 </form>
 
