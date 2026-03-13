@@ -10,19 +10,13 @@ export function FivemTokenProvider({ children }) {
         const handleMessage = (event) => {
             if (event.data.type === 'uuid-token') {
                 const receivedToken = event.data.token;
-                console.log('[FiveM] Token empfangen:', receivedToken);
+                const maskedToken = receivedToken.slice(0, 8) + '****';
+                console.log('[FiveM] Token empfangen:', maskedToken);
                 setFivemToken(receivedToken);
-                localStorage.setItem('fivem_token', receivedToken);
             }
         };
 
         window.addEventListener('message', handleMessage);
-
-        // Prüfe auf bereits gespeicherten Token
-        const savedToken = localStorage.getItem('fivem_token');
-        if (savedToken) {
-            setFivemToken(savedToken);
-        }
 
         return () => {
             window.removeEventListener('message', handleMessage);
@@ -31,7 +25,6 @@ export function FivemTokenProvider({ children }) {
 
     const clearToken = useCallback(() => {
         setFivemToken(null);
-        localStorage.removeItem('fivem_token');
     }, []);
 
     return (
